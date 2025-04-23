@@ -47,6 +47,7 @@ type Linux struct {
 	Apparmor        *Apparmor        `json:"apparmor,omitempty"`
 	Selinux         *Selinux         `json:"selinux,omitempty"`
 	IntelRdt        *IntelRdt        `json:"intelRdt,omitempty"`
+	MemoryPolicy    *MemoryPolicy    `json:"memoryPolicy,omitempty"`
 	MountExtensions *MountExtensions `json:"mountExtensions,omitempty"`
 }
 
@@ -129,6 +130,14 @@ type IntelRdt struct {
 	// Unrelated to whether the host supports Intel RDT or not.
 	// Nil value means "unknown", not "false".
 	Enabled *bool `json:"enabled,omitempty"`
+}
+
+// MemoryPolicy represents the "memoryPolicy" field.
+type MemoryPolicy struct {
+	// modes is the list of known memory policy modes, e.g., "MPOL_INTERLEAVE".
+	modes []string
+	// flags is the list of known memory policy mode flags, e.g., "MPOL_F_STATIC_NODES".
+	flags []string
 }
 
 // MountExtensions represents the "mountExtensions" field.
